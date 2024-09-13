@@ -1,4 +1,5 @@
 FROM nvidia/cuda:12.2.2-runtime-ubuntu22.04
+ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 RUN apt-get update && apt-get install -y \
     wget \
     git \
@@ -7,7 +8,6 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     bison \
     flex
-RUN MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 RUN wget https://sw-tools.rcsb.org/apps/MAXIT/maxit-v11.200-prod-src.tar.gz
 RUN tar zxvf maxit-v11.200-prod-src.tar.gz
 RUN cd maxit-v11.200-prod-src
