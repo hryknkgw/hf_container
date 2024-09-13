@@ -1,5 +1,8 @@
 FROM nvidia/cuda:12.2.2-runtime-ubuntu22.04
 ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
+ENV INSTALLDIR=/home/apps/
+ENV HELIXFOLD3DIR=${INSTALLDIR}/PaddleHelix/apps/protein_folding/helixfold3
+
 RUN apt-get update && apt-get install -y \
     wget \
     git \
@@ -30,5 +33,14 @@ RUN cd maxit-v11.200-prod-src && \
   wget https://files.rcsb.org/download/3QUG.pdb && \
   $MAXIT_INSTALL_DIR/bin/maxit -input 3QUG.pdb -output 3qug.cif -o 1 -log maxit.log && \
   head 3qug.cif
+
+RUN mkdir -p ${INSTALLDIR} && \
+  cd ${INSTALLDIR} && \
+  git clone https://github.com/PaddlePaddle/PaddleHelix.git && \
+  cd ${HELIXFOLD3DIR} && \
+  wget -q -P . https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+  bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ${HELIXFOLD3DIR}/conda && \
+  rm Miniconda3-latest-Linux-x86_64.sh && \
+  . "${HELIXFOLD3DIR}/conda/etc/profile.d/conda.sh"
 
 WORKDIR /opt
