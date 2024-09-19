@@ -3,7 +3,8 @@ ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 ENV INSTALLDIR=/home/apps/
 ENV HELIXFOLD3DIR=${INSTALLDIR}/PaddleHelix/apps/protein_folding/helixfold3
 ENV PATH="${HELIXFOLD3DIR}/conda/condabin:${PATH}"
-
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
+RUN dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
 RUN apt-get update && apt-get install -y \
     wget \
     git \
