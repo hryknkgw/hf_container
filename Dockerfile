@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     bison \
     zlib1g \
-    cudnn9.0.0-cuda-12 \
+    cudnn9.0.0 \
     flex
 
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
