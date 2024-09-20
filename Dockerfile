@@ -14,8 +14,6 @@ RUN apt-get update && apt-get install -y \
     bison \
     flex
 
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
-RUN dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
 RUN wget https://sw-tools.rcsb.org/apps/MAXIT/maxit-v11.200-prod-src.tar.gz
 RUN tar zxvf maxit-v11.200-prod-src.tar.gz
 RUN cd maxit-v11.200-prod-src && \
