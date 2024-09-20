@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.3.2-runtime-ubuntu22.04
+FROM nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04
 ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 ENV INSTALLDIR=/home/apps/
 ENV HELIXFOLD3DIR=${INSTALLDIR}/PaddleHelix/apps/protein_folding/helixfold3
@@ -12,8 +12,6 @@ RUN apt-get update && apt-get install -y \
     sudo \
     build-essential \
     bison \
-    zlib1g \
-    cudnn9-cuda12=9.0.0 \
     flex
 
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
@@ -53,7 +51,7 @@ RUN mkdir -p ${INSTALLDIR} && \
   
   conda install -y -c bioconda hmmer==3.3.2 kalign2==2.04 hhsuite==3.3.0 -n helixfold && \
   conda install -y -c conda-forge openbabel -n helixfold && \
-  # cudnn 8.4.0のインストール
+  # cudnn 8.4.0のインストール　CUDNN9のランタイムを使うのでここはスキップ
   # conda install -y -c conda-forge cudatoolkit==11.8.0 cudnn==8.4.1.50 -n helixfold && \
   # conda install -y -c conda-forge cudnn==9.2.1.18 -n helixfold && \
 
