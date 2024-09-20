@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     sudo \
     build-essential \
     bison \
+    zlib1g \
+    cudnn9.0.0-cuda-12 \
     flex
 
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
@@ -53,11 +55,11 @@ RUN mkdir -p ${INSTALLDIR} && \
   conda install -y -c conda-forge openbabel -n helixfold && \
   # cudnn 8.4.0のインストール
   # conda install -y -c conda-forge cudatoolkit==11.8.0 cudnn==8.4.1.50 -n helixfold && \
-  conda install -y -c conda-forge cudnn==9.2.1.18 -n helixfold && \
-  conda install -y -c paddle -c nvidia paddlepaddle-gpu==3.0.0b1 paddlepaddle-cuda=12.3 -n helixfold && \
+  # conda install -y -c conda-forge cudnn==9.2.1.18 -n helixfold && \
+
   conda activate helixfold && \
   # python -m pip install https://paddle-wheel.bj.bcebos.com/2.5.1/linux/linux-gpu-cuda11.7-cudnn8.4.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.1.post117-cp39-cp39-linux_x86_64.whl && \
-  python -m pip install nvidia-cublas-cu12==12.3.4.1 && \
+  python -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/ && \
   python -m pip install -r requirements.txt
   
 WORKDIR /opt
