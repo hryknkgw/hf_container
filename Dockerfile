@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.2.2-runtime-ubuntu22.04
+FROM nvidia/cuda:12.3.2-runtime-ubuntu22.04
 ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 ENV INSTALLDIR=/home/apps/
 ENV HELIXFOLD3DIR=${INSTALLDIR}/PaddleHelix/apps/protein_folding/helixfold3
