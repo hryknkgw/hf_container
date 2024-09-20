@@ -48,13 +48,16 @@ RUN mkdir -p ${INSTALLDIR} && \
   rm Miniconda3-latest-Linux-x86_64.sh && \
   . "${HELIXFOLD3DIR}/conda/etc/profile.d/conda.sh" && \
   conda create -n helixfold -c conda-forge python=3.9 -y && \
+  
   conda install -y -c bioconda hmmer==3.3.2 kalign2==2.04 hhsuite==3.3.0 -n helixfold && \
   conda install -y -c conda-forge openbabel -n helixfold && \
   # cudnn 8.4.0のインストール
-  conda install -y -c conda-forge cudatoolkit==11.8.0 cudnn==8.4.1.50 -n helixfold && \
+  # conda install -y -c conda-forge cudatoolkit==11.8.0 cudnn==8.4.1.50 -n helixfold && \
+  conda install -y -c conda-forge cudnn==8.4.1.50 -n helixfold && \
+  conda install -y -c conda-forge -c paddle paddlepaddle-gpu -n helixfold && \
 
   conda activate helixfold && \
-  python3.9 -m pip install https://paddle-wheel.bj.bcebos.com/2.5.1/linux/linux-gpu-cuda11.7-cudnn8.4.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.1.post117-cp39-cp39-linux_x86_64.whl && \
-  python3.9 -m pip install -r requirements.txt
+  # python -m pip install https://paddle-wheel.bj.bcebos.com/2.5.1/linux/linux-gpu-cuda11.7-cudnn8.4.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.1.post117-cp39-cp39-linux_x86_64.whl && \
+  python -m pip install -r requirements.txt
   
 WORKDIR /opt
