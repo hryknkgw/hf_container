@@ -54,7 +54,7 @@ RUN mkdir -p ${INSTALLDIR} && \
   # cudnn 8.4.0のインストール
   # conda install -y -c conda-forge cudatoolkit==11.8.0 cudnn==8.4.1.50 -n helixfold && \
   conda install -y -c conda-forge cudnn==8.4.1.50 -n helixfold && \
-  conda install -y -c conda-forge -c paddle paddlepaddle-gpu -n helixfold && \
+  conda install -y -c conda-forge -c paddle paddlepaddle-gpu==2.5.2 -n helixfold && \
 
   conda activate helixfold && \
   # python -m pip install https://paddle-wheel.bj.bcebos.com/2.5.1/linux/linux-gpu-cuda11.7-cudnn8.4.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.1.post117-cp39-cp39-linux_x86_64.whl && \
