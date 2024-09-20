@@ -57,6 +57,7 @@ RUN mkdir -p ${INSTALLDIR} && \
   conda install -y -c paddle -c nvidia paddlepaddle-gpu==3.0.0b1 paddlepaddle-cuda=12.3 -n helixfold && \
   conda activate helixfold && \
   # python -m pip install https://paddle-wheel.bj.bcebos.com/2.5.1/linux/linux-gpu-cuda11.7-cudnn8.4.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.1.post117-cp39-cp39-linux_x86_64.whl && \
+  python -m pip install nvidia-cublas-cu12==12.3.4.1 && \
   python -m pip install -r requirements.txt
   
 WORKDIR /opt
