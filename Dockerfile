@@ -54,7 +54,7 @@ RUN set -eux \
 
 RUN set -eux \
  && cd /opt \
- && curl -LR https://github.com/PaddlePaddle/PaddleHelix/archive/refs/heads/dev.tar.gz | tar -xf - \
+ && curl -LR https://github.com/PaddlePaddle/PaddleHelix/archive/refs/heads/dev.tar.gz | tar -zxf - \
  && ln -s PaddleHelix-dev PaddleHelix \
  && cd PaddleHelix \
  && python -m pip install -r requirements.txt
