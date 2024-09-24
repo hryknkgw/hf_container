@@ -38,7 +38,16 @@ RUN cd maxit-v11.200-prod-src && \
   head 3qug.cif
 
 RUN set -eux \
- && apt-get update && apt-get install -y curl python3 python3-venv aria2 hmmer kalign hhsuite openbabel
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+        curl \
+        python3 \
+        python3-venv \
+        aria2 \
+        hmmer \
+        kalign \
+        hhsuite \
+        openbabel
 
 RUN set -eux \
  && python3 -m ensurepip \
