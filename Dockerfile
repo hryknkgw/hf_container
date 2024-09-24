@@ -42,7 +42,7 @@ RUN set -eux \
  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
         curl \
         python3 \
-        python3-venv \
+        python3-pip \
         aria2 \
         hmmer \
         kalign \
@@ -50,7 +50,6 @@ RUN set -eux \
         openbabel
 
 RUN set -eux \
- && python3 -m ensurepip \
  && python3 -m pip install paddlepaddle-gpu
 
 RUN set -eux \
