@@ -59,4 +59,8 @@ RUN set -eux \
  && cd PaddleHelix/apps/protein_folding/helixfold3 \
  && python3 -m pip install -r requirements.txt
   
+RUN set -eux \
+ && cd /usr/lib/x86_64-linux-gnu \
+ && ln -s libcudnn.so.8 libcudnn.so
+
 WORKDIR /opt/PaddleHelix/apps/protein_folding/helixfold3
