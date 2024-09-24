@@ -37,25 +37,18 @@ RUN cd maxit-v11.200-prod-src && \
   $MAXIT_INSTALL_DIR/bin/maxit -input 3QUG.pdb -output 3qug.cif -o 1 -log maxit.log && \
   head 3qug.cif
 
-RUN mkdir -p ${INSTALLDIR} && \
-  cd ${INSTALLDIR} && \
-  git clone https://github.com/PaddlePaddle/PaddleHelix.git && \
-  cd ${HELIXFOLD3DIR} && \
-  wget -q -P . https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-  bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ${HELIXFOLD3DIR}/conda && \
-  rm Miniconda3-latest-Linux-x86_64.sh && \
-  . "${HELIXFOLD3DIR}/conda/etc/profile.d/conda.sh" && \
-  conda create -n helixfold -c conda-forge python=3.9 -y && \
-  
-  conda install -y -c bioconda hmmer==3.3.2 kalign2==2.04 hhsuite==3.3.0 -n helixfold && \
-  conda install -y -c conda-forge openbabel -n helixfold && \
-  # cudnn 8.4.0のインストール　CUDNN9のランタイムを使うのでここはスキップ
-  # conda install -y -c conda-forge cudatoolkit==11.8.0 cudnn==8.4.1.50 -n helixfold && \
-  # conda install -y -c conda-forge cudnn==9.2.1.18 -n helixfold && \
+RUN set -eux \
+ && apt-get update && apt-get install -y curl python3 python3-venv aria2 hmmer kalign hhsuite openbabel
 
-  conda activate helixfold && \
-  # python -m pip install https://paddle-wheel.bj.bcebos.com/2.5.1/linux/linux-gpu-cuda11.7-cudnn8.4.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.1.post117-cp39-cp39-linux_x86_64.whl && \
-  python -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html && \
-  python -m pip install -r requirements.txt
+RUN set -eux \
+ && python3 -m ensurepip \
+ && python3 -m pip install paddlepaddle-gpu
+
+RUN set -eux \
+ && cd /opt \
+ && curl -LR https://github.com/PaddlePaddle/PaddleHelix/archive/refs/heads/dev.tar.gz | tar -xf - \
+ && ln -s PaddleHelix-dev PaddleHelix \
+ && cd PaddleHelix \
+ && python -m pip install -r requirements.txt
   
-WORKDIR /opt
+WORKDIR /opt/PaddleHelix/apps/protein_folding/helixfold3
