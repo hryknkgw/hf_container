@@ -56,7 +56,7 @@ RUN set -eux \
  && cd /opt \
  && curl -LR https://github.com/PaddlePaddle/PaddleHelix/archive/refs/heads/dev.tar.gz | tar -zxf - \
  && ln -s PaddleHelix-dev PaddleHelix \
- && cd PaddleHelix \
+ && cd PaddleHelix/apps/protein_folding/helixfold3 \
  && python3 -m pip install -r requirements.txt
   
 WORKDIR /opt/PaddleHelix/apps/protein_folding/helixfold3
