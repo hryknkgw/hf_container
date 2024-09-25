@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.2.2-cudnn8-runtime-ubuntu20.04
+FROM registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda12.0-cudnn8.9-trt8.6
 ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 ENV INSTALLDIR=/home/apps/
 ENV HELIXFOLD3DIR=${INSTALLDIR}/PaddleHelix/apps/protein_folding/helixfold3
@@ -41,8 +41,6 @@ RUN set -eux \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
         curl \
-        python3 \
-        python3-pip \
         aria2 \
         hmmer \
         kalign \
@@ -50,17 +48,10 @@ RUN set -eux \
         openbabel
 
 RUN set -eux \
- && python3 -m pip install paddlepaddle-gpu
-
-RUN set -eux \
  && cd /opt \
  && curl -LR https://github.com/PaddlePaddle/PaddleHelix/archive/refs/heads/dev.tar.gz | tar -zxf - \
  && ln -s PaddleHelix-dev PaddleHelix \
  && cd PaddleHelix/apps/protein_folding/helixfold3 \
  && python3 -m pip install -r requirements.txt
-  
-RUN set -eux \
- && cd /usr/lib/x86_64-linux-gnu \
- && ln -s libcudnn.so.8 libcudnn.so
 
 WORKDIR /opt/PaddleHelix/apps/protein_folding/helixfold3
