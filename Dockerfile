@@ -1,5 +1,7 @@
 FROM nvcr.io/nvidia/paddlepaddle:24.01-py3
 
+ARG PADDLEHELIX_VERSION=dev
+
 ENV RCSBROOT=/usr/local/maxit
 ENV PATH="${RCSBROOT}/bin:${PATH}"
 
@@ -27,11 +29,10 @@ RUN set -eux \
         hhsuite \
         openbabel
 
-ADD https://github.com/PaddlePaddle/PaddleHelix.git /opt
+ADD https://github.com/PaddlePaddle/PaddleHelix.git#${PADDLEHELIX_VERSION} /opt/PaddleHelix
 
 RUN set -eux \
- && cd /opt \
- && cd PaddleHelix/apps/protein_folding/helixfold3 \
+ && cd /opt/PaddleHelix/apps/protein_folding/helixfold3 \
  && python3 -m pip install -r requirements.txt
 
 WORKDIR /opt/PaddleHelix/apps/protein_folding/helixfold3
