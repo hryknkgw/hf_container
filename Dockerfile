@@ -27,11 +27,10 @@ RUN set -eux \
         hhsuite \
         openbabel
 
-ADD git@github.com:PaddlePaddle/PaddleHelix.git /opt
+ADD https://github.com/PaddlePaddle/PaddleHelix.git /opt
 
 RUN set -eux \
  && cd /opt \
- && ln -s PaddleHelix-dev PaddleHelix \
  && cd PaddleHelix/apps/protein_folding/helixfold3 \
  && python3 -m pip install -r requirements.txt
 
