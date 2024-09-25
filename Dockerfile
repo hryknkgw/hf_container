@@ -9,10 +9,9 @@ RUN set -eux \
     bison \
     flex
 
-ADD https://sw-tools.rcsb.org/apps/MAXIT/maxit-v11.200-prod-src.tar.gz /usr/local
-
 RUN set -eux \
  && cd /usr/local \
+ && curl -LR https://sw-tools.rcsb.org/apps/MAXIT/maxit-v11.200-prod-src.tar.gz | tar -zxf - \
  && ln -s maxit-v11.200-prod-src maxit \
  && cd maxit \
  && make -j1 binary \
@@ -28,7 +27,7 @@ RUN set -eux \
         hhsuite \
         openbabel
 
-ADD https://github.com/PaddlePaddle/PaddleHelix/archive/refs/heads/dev.tar.gz /opt
+ADD git@github.com:PaddlePaddle/PaddleHelix.git /opt
 
 RUN set -eux \
  && cd /opt \
