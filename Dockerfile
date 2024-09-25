@@ -11,13 +11,13 @@ RUN set -eux \
     bison \
     flex
 
+WORKDIR /usr/local
+
 RUN set -eux \
- && cd /usr/local \
  && curl -LR https://sw-tools.rcsb.org/apps/MAXIT/maxit-v11.200-prod-src.tar.gz | tar -zxf - \
  && ln -s maxit-v11.200-prod-src maxit \
- && cd maxit \
- && make -j1 binary \
- && chmod 644 data/*/*
+ && make -j1 -C maxit binary \
+ && chmod 644 maxit/data/*/*
 
 RUN set -eux \
  && apt-get update \
@@ -31,8 +31,7 @@ RUN set -eux \
 
 ADD https://github.com/PaddlePaddle/PaddleHelix.git#${PADDLEHELIX_VERSION} /opt/PaddleHelix
 
-RUN set -eux \
- && cd /opt/PaddleHelix/apps/protein_folding/helixfold3 \
- && python3 -m pip install -r requirements.txt
-
 WORKDIR /opt/PaddleHelix/apps/protein_folding/helixfold3
+
+RUN set -eux \
+ && python3 -m pip install -r requirements.txt
