@@ -1,4 +1,4 @@
-FROM registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda12.0-cudnn8.9-trt8.6
+FROM nvcr.io/nvidia/paddlepaddle:24.01-py3
 ENV MAXIT_INSTALL_DIR=/home/apps/maxit/11.200
 ENV INSTALLDIR=/home/apps/
 ENV HELIXFOLD3DIR=${INSTALLDIR}/PaddleHelix/apps/protein_folding/helixfold3
