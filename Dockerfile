@@ -12,7 +12,7 @@ RUN set -eux \
 ADD https://sw-tools.rcsb.org/apps/MAXIT/maxit-v11.200-prod-src.tar.gz /usr/local
 
 RUN set -eux \
- && cd /usr/local
+ && cd /usr/local \
  && ln -s maxit-v11.200-prod-src maxit \
  && cd maxit \
  && make -j1 binary \
