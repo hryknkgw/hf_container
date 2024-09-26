@@ -9,5 +9,5 @@
 
 ### warning
 - Fixed: ~~H100 is not supported paddlepaddle 2.5.x and 2.6.0 cause segmentation fault when run the helixfold~~
-  - Notes: H100 is supported paddlepaddle above 2.5.0.
+  - Notes: PaddlePaddle above 2.5.0 [support cuda12+ arch and Hopper arch.](https://github.com/PaddlePaddle/Paddle/commit/e54e2bc8bcc7f4e75edf449320cbbf8e8047377e)
 - Fixed: ~~to solve the issue 3.0.0.b is used for building container (cudnn > 9.0 is required to install it)~~
